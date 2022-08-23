@@ -1,0 +1,26 @@
+{
+    "workbench.colorTheme": "Monokai Dark Soda",
+    "workbench.colorCustomizations": {
+        "tab.activeBorderTop": "#7ec1e0",
+        "tab.activeBorder":  "#7ec1e0"
+    },
+    "jupyter.askForKernelRestart": false,
+    "terminal.integrated.inheritEnv": true,
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.cursorWidth": 1.5,
+    "window.menuBarVisibility": "classic",
+    "files.autoSave": "afterDelay",
+    "notebook.output.textLineLimit": 100,
+    "editor.minimap.enabled": false,
+    "vsicons.dontShowNewVersionMessage": true,
+    "workbench.startupEditor": "none",
+    "terminal.integrated.shellIntegration.enabled": true,
+    "workbench.editorAssociations": {
+        "*.csv": "gc-excelviewer-csv-editor"
+    },
+    "settingsSync.ignoredSettings": [
+        "-python.defaultInterpreterPath"
+    ],
+    "workbench.iconTheme": "vscode-icons"
+}
