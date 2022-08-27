@@ -1,0 +1,38 @@
+swipe:
+  2:
+    left:
+      command: "xdotool key super+home" # Switch one workspace to the left
+    right:
+      command: "xdotool key super+end" # Switch one workspace to the right
+  3:
+    left:
+      command: "xdotool key shift+super+Left" # Move window one monitor to the left
+    right:
+      command: "xdotool key shift+super+Right" # Move window one monitor to the right
+    
+  4:
+    left:
+      command: "xdotool key alt+home " # Move window one workspace to the left
+    right:
+      command: "xdotool key alt+end" # Move window one workspace to the right
+    up:
+      command: "xdotool key super" # activity
+    down:
+      command: "xdotool key super" # activity
+pinch:
+  3:
+    in:
+      command: "xdotool key ctrl+plus" # Zoom in
+      threshold: 0.1
+    out:
+      command: "xdotool key ctrl+minus" # Zoom out
+      threshold: 0.1
+
+threshold:
+  swipe: 1
+  pinch: 1
+
+interval:
+  swipe: 1
+  pinch: 1   
+
