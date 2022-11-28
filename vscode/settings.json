@@ -7,6 +7,7 @@
         "list.warningForeground": "#e98557dc",
         "terminal.ansiYellow": "#6b6742"
     },
+    "python.pylanceLspNotebooksEnabled": true, 
     "terminal.integrated.inheritEnv": true,
     "terminal.integrated.cursorBlinking": true,
     "terminal.integrated.cursorStyle": "line",
