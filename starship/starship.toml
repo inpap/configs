@@ -1,0 +1,175 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Replace the '❯' symbol in the prompt with '➜'
+#[character] # The name of the module we are configuring is 'character'
+#success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+
+
+# Change the order of modules in the string below to change their order in the prompt
+# The format string should be placed here before the configurations of each module 
+format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$directory\
+$vcsh\
+$fossil_branch\
+$fossil_metrics\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$pijul_channel\
+$docker_context\
+$package\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$golang\
+$guix_shell\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$gradle\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$quarto\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$typst\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$direnv\
+$env_var\
+$crystal\
+$custom\
+$sudo\
+$cmd_duration\
+$kubernetes\
+$jobs\
+$battery\
+$time\
+$status\
+$os\
+$container\
+$shell\
+$line_break\
+$character"""
+
+
+
+
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[username]
+style_user = "green bold"
+style_root = "red bold"
+format = "[$user:]($style) "
+disabled = false
+show_always = true
+
+
+# Disable Google Cloud module
+[gcloud]
+disabled = true
+
+
+# Directory module
+[directory]
+truncation_length = 2
+truncate_to_repo = true
+
+
+[git_branch]
+always_show_remote = false
+symbol = '🌱 '
+
+
+[conda]
+symbol = '🇨 '
+format = 'in [$symbol $environment](green) '
+
+
+
+[kubernetes]
+disabled = true
+format = 'at [⛵ \($namespace\)](blue) '
+# detect_files = ['k8s']
+
+
+
+
+# ~/.config/starship.toml
+
+[git_status]
+conflicted = '🏳'
+ahead = '🏎💨'
+behind = '😰'
+diverged = '😵'
+up_to_date = '👌'
+untracked = '🤷'
+stashed = '📦'
+modified = '📝'
+staged = '[++\($count\)](green)'
+renamed = '👅'
+deleted = '🗑'
+
+
+
+
+
+
+
+
+
+
+
+
