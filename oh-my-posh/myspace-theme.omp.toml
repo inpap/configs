@@ -1,0 +1,97 @@
+#:schema https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version = 2
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'os'
+    style = 'plain'
+    template = '{{ if .WSL }}WSL at {{ end }}{{.Icon}}'
+    background = ''
+    foreground = '#26C6DA'
+    Text = ''
+    Duration = 0
+    NameLength = 0
+
+    [blocks.segments.properties]
+      macos = 'mac'
+
+  [[blocks.segments]]
+    type = 'session'
+    style = 'plain'
+    template = ' {{ .UserName }}: '
+    background = ''
+    foreground = '#26C6DA'
+    Text = ''
+    Duration = 0
+    NameLength = 0
+
+  [[blocks.segments]]
+    type = 'path'
+    style = 'plain'
+    template = '{{ .Path }} '
+    background = ''
+    foreground = 'lightGreen'
+    Text = ''
+    Duration = 0
+    NameLength = 0
+
+    [blocks.segments.properties]
+      style = 'folder'
+
+  [[blocks.segments]]
+    type = 'git'
+    style = 'powerline'
+    template = '<#ffffff>on</> {{ .HEAD }}'
+    background = ''
+    foreground = ''
+    Text = ''
+    Duration = 0
+    NameLength = 0
+
+    [blocks.segments.properties]
+      branch_icon = ' '
+      fetch_stash_count = false
+
+  [[blocks.segments]]
+    type = 'python'
+    style = 'powerline'
+    template = '[ {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}] '
+    background = ''
+    foreground = '#906cff'
+    Text = ''
+    Duration = 0
+    NameLength = 0
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    template = '❯ '
+    background = ''
+    foreground_templates = [
+    	"{{if gt .Code 0}}red{{end}}",
+		"{{if eq .Code 0}}'#FFD54F'{{end}}"
+    ]
+    foreground = '#FFD54F'
+    Text = ''
+    Duration = 0
+    NameLength = 0
+
+[transient_prompt]
+  foreground_templates = [
+    	"{{if gt .Code 0}}red{{end}}",
+		"{{if eq .Code 0}}'#FFD54F'{{end}}"
+    ]
+  background = 'transparent'
+  template =  '❯ '
+
