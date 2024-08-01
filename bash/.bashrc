@@ -1,7 +1,3 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -10,18 +6,18 @@ esac
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth
+#HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
-shopt -s histappend
+#shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+#HISTSIZE=1000
+#HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+#shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -43,7 +39,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -134,8 +130,103 @@ unset __conda_setup
 if [ -f "/home/pristakos/mambaforge/etc/profile.d/mamba.sh" ]; then
     . "/home/pristakos/mambaforge/etc/profile.d/mamba.sh"
 fi
+
+CONDA_ROOT=~/mambaforge   # <- set to your Anaconda/Miniconda installation directory
+if [[ -r $CONDA_ROOT/etc/profile.d/bash_completion.sh ]]; then
+    source $CONDA_ROOT/etc/profile.d/bash_completion.sh
+else
+    echo "WARNING: could not find conda-bash-completion setup script"
+fi
+
 # <<< conda initialize <<<
 
+# forward search history
+stty -ixon
 
-# openfoam
-. /opt/openfoam10/etc/bashrc
+
+
+
+# If there are multiple matches for completion, Tab should cycle through them
+bind 'TAB:menu-complete'
+
+# And Shift-Tab should cycle backwards
+bind '"\e[Z": menu-complete-backward'
+
+# Display a list of the matching files
+bind "set show-all-if-ambiguous on"
+
+# Perform partial (common) completion on the first Tab press, only start
+# cycling full results on the second Tab press (from bash version 5)
+bind "set menu-complete-display-prefix on"
+
+
+# Cycle through history based on characters already typed on the line
+bind '"\e[A":history-search-backward'
+bind '"\e[B":history-search-forward'
+
+# Keep Ctrl-Left and Ctrl-Right working when the above are used
+bind '"\e[1;5C":forward-word'
+bind '"\e[1;5D":backward-word'
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/pristakos/google-cloud-sdk/path.bash.inc' ]; then . '/home/pristakos/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/pristakos/google-cloud-sdk/completion.bash.inc' ]; then . '/home/pristakos/google-cloud-sdk/completion.bash.inc'; fi
+
+
+
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+
+
+
+
+# homebrew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+
+
+# func for encoding a string to base64 : encode_64 Hello, World --> SGVsbG8sIFdvcmxkCg== 
+function encode_64(){ echo "$*" | base64 ; }
+function encode_64_no_newline(){ echo -n "$*" | base64 ; }
+
+# func from decoding a string from base64: decode_64 SGVsbG8sIFdvcmxkCg== --> Hello, World
+function decode_64(){ echo "$*" | base64 --decode ; }
+function decode_64_no_newline(){ echo -n "$*" | base64 --decode ; }
+
+
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"
+
+
+
+# zioxide
+export PATH="/home/pristakos/.local/bin:$PATH"
+eval "$(zoxide init bash)"
+
+source ~/.tldr/.tldr.complete
+
+# open current dir in files
+alias ocd="xdg-open ."
+
+
+# retitle a pdf
+alias retitle_pdf='exiftool -Title="$1" "$2"'
+
+
+# toggle always on top on and of
+# bash -c 'wmctrl -r :ACTIVE: -b $([[ $(xprop -id $(xprop -root -f _NET_ACTIVE_WINDOW 0x " \$0\\n" _NET_ACTIVE_WINDOW | awk "{print \$2}") _NET_WM_STATE) =~ "ABOVE" ]] && echo "remove" || echo "add"),above'
+
+
+
+
+alias ls='exa'
+alias cat='bat'
+
+
+# eval "$(oh-my-posh init bash --config ~/.oh-my-posh/themes/myspace-theme.omp.toml)"
+
+eval "$(starship init bash)" # init zsh
+
+
