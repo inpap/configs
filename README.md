@@ -1,2 +1,2 @@
-# configs
-A repo contraining config folders of personal tools i use
+# dotfiles
+A repo with configuration files of tools that i like to use :)
