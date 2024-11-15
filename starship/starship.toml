@@ -134,7 +134,7 @@ symbol = '🌱 '
 
 
 [conda]
-symbol = '🇨 '
+symbol = "conda"
 format = 'in [$symbol $environment](green) '
 
 
