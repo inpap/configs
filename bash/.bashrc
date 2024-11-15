@@ -196,6 +196,14 @@ function decode_64(){ echo "$*" | base64 --decode ; }
 function decode_64_no_newline(){ echo -n "$*" | base64 --decode ; }
 
 
+
+
+
+
+export FZF_DEFAULT_OPTS="--exact"
+export FZF_ALT_C_COMMAND=" :"
+
+
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --bash)"
 
@@ -203,7 +211,8 @@ eval "$(fzf --bash)"
 
 # zioxide
 export PATH="/home/pristakos/.local/bin:$PATH"
-eval "$(zoxide init bash)"
+
+eval "$(zoxide init --cmd cd bash)"
 
 source ~/.tldr/.tldr.complete
 
@@ -221,7 +230,8 @@ alias retitle_pdf='exiftool -Title="$1" "$2"'
 
 
 
-alias ls='exa'
+
+alias ls='eza'
 alias cat='bat'
 
 
@@ -230,3 +240,25 @@ alias cat='bat'
 eval "$(starship init bash)" # init zsh
 
 
+
+
+# activate autocompletion for bash
+source ~/.ruff-completion.bash
+
+
+
+
+# temporary workaround to start the docker desktop service
+# https://github.com/docker/desktop-linux/issues/209
+alias start_docker_desktop='sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 && systemctl --user start docker-desktop.service'
+
+
+# VIMINIT tells vim where to find the configuration file .vimrc
+export VIMINIT="source ~/.vim/.vimrc"
+
+
+
+
+eval "$(thefuck --alias)"
+. "$HOME/.cargo/env"
+source ~/.bash_completion/alacritty
